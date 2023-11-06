@@ -46,8 +46,10 @@ module "aws_iam" {
 }
 
 module "aws_eks" {
-  source    = "./modules/iam"
-  namespace = var.namespace
+  source    = "./modules/eks"
+  vpc                = module.network.vpc_id
+  public_subnet_ids  = module.network.public_subnet_ids
+  private_subnet_ids = module.network.private_subnet_ids
 }
 
 
