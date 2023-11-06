@@ -1,43 +1,32 @@
-variable "region" {
-  #default region to deploy infrastructure
-  type    = string
-  default = "us-east-1"
+variable "eks_cluster_name" {
+  default = "Demo-3"
 }
 
-variable "environment" {
-  #default environment to tag infrastructure
-  type    = string
-  default = "demo4"
+variable "vpc" {
+  description = "AWS VPC"
 }
 
-variable "eks_name" {
-  #name for eks cluster
-  type    = string
-  default = "demo4"
+variable "public_subnet_cidrs" {
+  type = list(string)
+  default = [
+    "10.0.1.0/24",
+    "10.0.2.0/24"
+  ]
 }
 
-variable "tags" {
-  #tags for eks cluster
-  type    = map(string)
-  default = {"env" = "demo4"}
+variable "private_subnet_cidrs" {
+  type = list(string)
+  default = [
+    "10.0.3.0/24",
+    "10.0.4.0/24"
+  ]
 }
 
-variable "env_name" {
-  #environment name for eks cluster
-  type    = string
-  default = "demo4"
+variable "public_subnet_ids" {
+  type = list(string)
 }
 
-variable "alb_tag" {
-  #alb tag for data to retrieve
-  type = map(string)
-  default = {
-    MyController = "true"
-  }
+variable "private_subnet_ids" {
+  type = list(string)
 }
 
-variable "domain" {
-  description = "Domain name for hosted zone"
-  default = "yaremchyk.pp.ua"
-  type = string
-}
