@@ -20,7 +20,7 @@ resource "aws_eks_cluster" "eks" {
 
 }
 
-#===================================IAM===================================
+
 resource "aws_iam_role" "eks" {
   name = var.eks_cluster_name
 
