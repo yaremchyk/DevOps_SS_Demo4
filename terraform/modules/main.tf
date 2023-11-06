@@ -1,7 +1,7 @@
 
 
 module "aws_ecr" {
-   source    = "/ecr"
+   source    = "./ecr"
    namespace = var.namespace
 }
 
