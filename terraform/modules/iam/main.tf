@@ -9,7 +9,7 @@ resource "aws_iam_role_policy_attachment" "ec2_instance_role_policy" {
 }
 
 resource "aws_iam_instance_profile" "ec2_instance_role_profile" {
-  name = "${var.namespace}-ec2-instance-role-profile-${var.environment}"
+  name = "${var.namespace}-ec2-instance-role-profile1-${var.environment}"
   role = aws_iam_role.ec2_instance_role.id
 }
 
