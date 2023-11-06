@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: app-deployment
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: demo-app
+  template:
+    metadata:
+      labels:
+        app: demo-app
+    spec:
+      containers:
+        - name: demo-app-container
+          image: 025389115636.dkr.ecr.us-east-1.amazonaws.com/dev/demo3:latest
+          resources:
+            limits:
+              memory: "128Mi"
+              cpu: "500m"
+          ports:
+            - containerPort: 8002
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: app-service
+  labels:
+    env: demo
+    
+spec:
+  selector:
+    #app: app-deployment
+    app: demo-app
+  ports:
+    - name: app-listener
+      protocol: TCP
+      port: 8002
+      targetPort: 8002
+  type: LoadBalancer
+
