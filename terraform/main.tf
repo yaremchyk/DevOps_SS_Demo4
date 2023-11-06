@@ -41,7 +41,7 @@ module "aws_alb" {
 
 
 module "aws_iam" {
-  source    = "./iam"
+  source    = "../modules/iam"
   namespace = var.namespace
 }
 
