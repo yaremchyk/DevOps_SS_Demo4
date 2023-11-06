@@ -47,9 +47,9 @@ module "aws_iam" {
 
 module "aws_eks" {
   source    = "./modules/eks"
-  vpc                = module.network.vpc_id
-  public_subnet_ids  = module.network.public_subnet_ids
-  private_subnet_ids = module.network.private_subnet_ids
+  vpc                = module.aws_vpc.vpc_id
+  public_subnet_ids  = module.aws_subnets.public_subnet_ids
+  private_subnet_ids = module.aws_subnets.public_subnet_ids
 }
 
 
