@@ -14,7 +14,7 @@ spec:
         app: eksdemo
     spec:
       containers:
-        - name: todo
+        - name: demo-app-container
           image: 025389115636.dkr.ecr.us-east-1.amazonaws.com/dev/demo3:latest
           ports:
             - containerPort: 8002
