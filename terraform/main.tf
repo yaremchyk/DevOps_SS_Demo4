@@ -45,20 +45,13 @@ module "aws_iam" {
   namespace = var.namespace
 }
 
-module "aws_eks" {
-  source    = "./modules/eks"
-  vpc                   = true
-  region                         = var.region
-  cluster_name                   = var.cluster_name
-  hosted_zone_name               = var.hosted_zone_name
-  alb_name                       = var.alb_name
-  kms_key_arn                    = var.kms_key_arn
-  vpc_name                       = var.vpc_name 
-  aws_worker_profile             = var.aws_worker_profile
-  cloud_tech_demo_tags           = var.cloud_tech_demo_tags
-  ecr_rep                        = var.ecr_rep
+module "eks" {
+  count              = 1
+  source             = "./modules/eks"
+  vpc                = module.network.vpc_id
+  public_subnet_ids  = module.eks.public-us-east-1a.id
+  private_subnet_ids = module.eks.private-us-east-1a.id
 }
-
 
 
 
