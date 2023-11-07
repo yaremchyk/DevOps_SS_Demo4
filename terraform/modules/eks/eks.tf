@@ -37,3 +37,11 @@ resource "aws_eks_cluster" "demo" {
 
   depends_on = [aws_iam_role_policy_attachment.demo-AmazonEKSClusterPolicy]
 }
+
+
+resource "aws_kms_key" "demo" {
+  description         = "KMS key for Cloud Tech Demo"
+  enable_key_rotation = true
+
+  tags = merge(var.cloud_tech_demo_tags, tomap({ "Name" = "cloud-tech-demo-kms-key" }))
+}
