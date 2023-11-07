@@ -46,7 +46,6 @@ module "aws_iam" {
 }
 
 module "eks" {
-  count              = 1
   source             = "./modules/eks"
   vpc                = module.network.vpc_id
   public_subnet_ids  = module.eks.public-us-east-1a.id
