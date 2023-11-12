@@ -15,7 +15,7 @@ pipeline {
         )
     }
     stages{
-        stage('Terraform init and select workspace') {
+        stage('Terraform init') {
             when {
               expression { params.action == 'deploy' || params.action == 'destroy'}
             }
@@ -23,6 +23,24 @@ pipeline {
                 script {
                           sh 'terraform init'
                }
+            }
+        }
+
+        stage('Jenkins module apply') {
+            when {
+              expression { params.action == 'deploy'}
+            }
+
+            steps {
+                script {
+                    try {
+                        sh 'terraform plan'
+                                sh 'terraform apply -target="module.jenkins"'
+                    } catch (err) {
+                        echo err.getMessage()
+                    }
+                }
+                echo currentBuild.result
             }
         }
 
@@ -40,7 +58,18 @@ pipeline {
                     }
                 }
                 echo currentBuild.result
-    }
+            }
+        }
+
+        stage('Triggering App job') {
+            when {
+              expression { params.action == 'deploy' || params.action == 'destroy'}
+            }
+            steps {
+                script {
+                          build 'Demo4'
+               }
+            }
         }
 
         stage('Stop app') {
