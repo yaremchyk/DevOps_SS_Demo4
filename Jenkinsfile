@@ -22,10 +22,10 @@ pipeline {
             steps {
                 script {
                     dir('modules') {
-                        {
+                        
                             sh 'terraform init'
                             
-                        }
+                        
                     }
                 }
             }
