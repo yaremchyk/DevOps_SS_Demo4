@@ -1,6 +1,6 @@
 
 pipeline {
-    agent any
+    agent { node { label 'master' } }
 
     parameters {
         choice (
