@@ -22,7 +22,7 @@ pipeline {
             steps {
                 script {
                     dir('modules') {
-                        withAWS(credentials:'root', region:'eu-north-1') {
+                        {
                             sh 'terraform init'
                             
                         }
@@ -37,7 +37,7 @@ pipeline {
             }
             steps {
                 dir('modules') {
-                    withAWS(credentials:'root', region:'eu-north-1') {
+                    {
                         sh 'terraform plan'
                         sh 'terraform apply -auto-approve'
                     }
@@ -51,7 +51,7 @@ pipeline {
             }
             steps {
                 dir('modules') {
-                    withAWS(credentials:'root', region:'eu-north-1') {
+                    {
                         sh 'terraform destroy -auto-approve'
                     }
                 }
