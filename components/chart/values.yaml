@@ -1,0 +1,5 @@
+container:
+  name: todo
+  port: 8002
+
+replicaCount: 1
