@@ -2,10 +2,6 @@
 pipeline {
     agent any
 
-    tools {
-        terraform 'terraform'
-    }
-
     parameters {
         choice (
             choices: ['deploy', 'build', 'destroy'],
