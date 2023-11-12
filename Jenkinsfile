@@ -37,10 +37,10 @@ pipeline {
             }
             steps {
                 dir('modules') {
-                    {
+                    
                         sh 'terraform plan'
                         sh 'terraform apply -auto-approve'
-                    }
+                    
                 }
             }
         }
@@ -51,9 +51,9 @@ pipeline {
             }
             steps {
                 dir('modules') {
-                    {
+                    
                         sh 'terraform destroy -auto-approve'
-                    }
+                    
                 }
             }
         }
