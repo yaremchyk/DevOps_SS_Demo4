@@ -21,13 +21,8 @@ pipeline {
             }
             steps {
                 script {
-                    dir('modules') {
-                        
-                            sh 'terraform init'
-                            
-                        
-                    }
-                }
+                          sh 'terraform init'
+               }
             }
         }
 
@@ -36,12 +31,10 @@ pipeline {
               expression { params.action == 'deploy'}
             }
             steps {
-                dir('modules') {
-                    
+                 
                         sh 'terraform plan'
                         sh 'terraform apply -auto-approve'
-                    
-                }
+       
             }
         }
 
@@ -50,11 +43,8 @@ pipeline {
                 expression { params.action == 'destroy'}
             }
             steps {
-                dir('modules') {
-                    
-                        sh 'terraform destroy -auto-approve'
-                    
-                }
+               
+                        sh 'terraform destroy -auto-approve'         
             }
         }
     }
