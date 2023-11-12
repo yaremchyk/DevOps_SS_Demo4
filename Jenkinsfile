@@ -18,7 +18,7 @@ pipeline {
             name: 'env'
         )
     }
-
+    stages{
         stage('Terraform init and select workspace') {
             when {
               expression { params.action == 'deploy' || params.action == 'destroy'}
@@ -63,4 +63,4 @@ pipeline {
         }
     }
 
-
+}
