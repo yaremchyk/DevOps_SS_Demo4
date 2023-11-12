@@ -31,11 +31,16 @@ pipeline {
               expression { params.action == 'deploy'}
             }
             steps {
-                 
+                script {
+                    try {
                         sh 'terraform plan'
-                        sh 'terraform apply -auto-approve'
-       
-            }
+                                sh 'terraform apply -auto-approve'
+                    } catch (err) {
+                        echo err.getMessage()
+                    }
+                }
+                echo currentBuild.result
+    }
         }
 
         stage('Stop app') {
@@ -43,9 +48,16 @@ pipeline {
                 expression { params.action == 'destroy'}
             }
             steps {
-               
-                        sh 'terraform destroy -auto-approve'         
-            }
+                script {
+                    try {
+                        sh 'terraform plan'
+                                sh 'terraform destroy -auto-approve'
+                    } catch (err) {
+                        echo err.getMessage()
+                    }
+                }
+                echo currentBuild.result
+    }
         }
     }
 
