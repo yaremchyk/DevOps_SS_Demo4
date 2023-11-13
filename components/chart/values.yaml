@@ -3,3 +3,33 @@ container:
   port: 8002
 
 replicaCount: 1
+
+datadog:
+  clusterName: demo-cluster
+  apiKey: e779541f628d0454c3ee8c8f7179503c
+  logs:
+    enabled: true
+    containerCollectAll: true
+  apiKeyExistingSecret: datadog-secret
+  appKeyExistingSecret: datadog-secret
+  site: us5.datadoghq.com
+  collectEvents: true
+  leaderElection: true
+  collectEvents: true
+  networkMonitoring:
+    enabled: true
+  logs:
+    enabled: true
+    containerCollectAll: true
+  processAgent:
+    enabled: true
+    processCollection: true
+  clusterAgent:
+    enabled: true
+  apm:
+    portEnabled: true
+
+# agents:
+#   rbac:
+#     create: true
+

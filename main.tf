@@ -7,10 +7,10 @@ module "network" {
   cluster_name         = var.cluster_name
 }
 
-module "ecr" {
-  source          = "./modules/ecr"
-  repository_name = var.repository_name
-}
+# module "ecr" {
+#   source          = "./modules/ecr"
+#   repository_name = var.repository_name
+# }
 
 module "jenkins" {
   source    = "./modules/jenkins"
@@ -47,7 +47,7 @@ module "app" {
   source          = "./modules/app"
   domain          = var.domain
   certificate_arn = module.alb.certificate_arn
-  ecr_repository  = module.ecr.ecr_repository_url
+  ecr_repository  = var.ecr_repository_url
   depend = ""
   depends_on = [module.eks]
 }

@@ -43,6 +43,11 @@ variable "repository_name" {
   default = "dev/demo3"
 }
 
+variable "ecr_repository_url" {
+  type    = string
+  default = "025389115636.dkr.ecr.eu-north-1.amazonaws.com/dev/demo3"
+}
+
 # ===================ALB=======================
 
 variable "lb_name" {
